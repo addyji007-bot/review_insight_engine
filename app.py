@@ -7,8 +7,10 @@ import html
 import json
 import math
 import re
+import sys
 import tempfile
 import time
+import traceback
 from pathlib import Path
 
 import pandas as pd
@@ -19,7 +21,44 @@ import streamlit as st
 from src.aspects import aspect_names, find_aspect_mentions
 from src.pipeline import FeedbackInsightsPipeline
 from src.preprocessing import load_feedback, normalize_feedback_frame
-from src.topics import TopicDiscoverer, dataset_fingerprint
+from src.aspect_sentiment import analyze_aspects, evaluate_labels, split_clauses, summarize_aspects, validation_template
+from src.topic_engine import TopicDiscoverer, dataset_fingerprint
+
+
+class _SafeStream:
+    """Wrap stdout/stderr so a closed terminal can never crash the app.
+
+    On Windows, writing to a console that no longer exists (for example after
+    VS Code's "Reload Window" kills the terminal Streamlit was started from)
+    raises ``OSError: [Errno 22] Invalid argument``. Model-loading progress
+    bars (tqdm / Hugging Face) write to stderr, so they triggered it.
+    """
+
+    _is_safe_stream = True
+
+    def __init__(self, stream):
+        self._stream = stream
+
+    def write(self, data):
+        try:
+            return self._stream.write(data)
+        except (OSError, ValueError):
+            return len(data) if data else 0
+
+    def flush(self):
+        try:
+            self._stream.flush()
+        except (OSError, ValueError):
+            pass
+
+    def __getattr__(self, name):
+        return getattr(self._stream, name)
+
+
+for _stream_name in ("stdout", "stderr"):
+    _current = getattr(sys, _stream_name, None)
+    if _current is not None and not getattr(_current, "_is_safe_stream", False):
+        setattr(sys, _stream_name, _SafeStream(_current))
 
 
 st.set_page_config(
@@ -90,7 +129,7 @@ inject_style()
 
 # Bump this string whenever you replace source files, so Streamlit never reuses
 # an object that was built from older code.
-CACHE_VERSION = "2026-11-11-r3"
+CACHE_VERSION = "2026-11-12-r5"
 
 
 @st.cache_resource(show_spinner="Loading NLP models…")
@@ -240,17 +279,6 @@ def top_drivers(contributions: list, n: int = 3, min_effect: float = 0.25) -> tu
     return [clean(w) for w, _ in positive], [clean(w) for w, _ in negative]
 
 
-_CLAUSE_SPLIT = re.compile(
-    r"\s*(?:[.;!?]+|,?\s+\b(?:but|however|although|though|whereas|yet)\b,?)\s*", flags=re.IGNORECASE
-)
-
-
-def split_clauses(text: str) -> list[str]:
-    """Split a message into clauses at sentence ends and contrast words (but, however...)."""
-    parts = [part.strip(" ,") for part in _CLAUSE_SPLIT.split(str(text))]
-    return [part for part in parts if len(part.split()) >= 2]
-
-
 def parse_upload(uploaded_file) -> pd.DataFrame:
     """Parse an uploaded file into a raw DataFrame, storing metadata in attrs."""
     suffix = Path(uploaded_file.name).suffix or ".txt"
@@ -278,7 +306,7 @@ def render_sidebar() -> None:
         st.markdown("**Decision support**")
         st.caption("Convert unstructured feedback into prioritized signals for product, support, and operations teams.")
         st.markdown("**Model stack**")
-        st.caption("DistilBERT sentiment · spaCy NER · BERTopic topic discovery · explainable keyword baseline")
+        st.caption("DistilBERT sentiment · spaCy NER · aspect-based sentiment · BERTopic topics · word-level explanations")
         st.divider()
         st.markdown("**Product note**")
         st.caption("Use the scan to move from recurring customer friction to a prioritized conversation with the owning team.")
@@ -802,31 +830,213 @@ def render_topic_discovery() -> None:
         st.info("Run topic discovery to view sentiment by topic.")
 
 
+def show_error(label: str, exc: Exception) -> None:
+    """Show a friendly error plus the full traceback so the real cause is never hidden."""
+    st.error(f"{label} error: {exc}")
+    with st.expander("Technical details (send this if the error persists)"):
+        st.code(traceback.format_exc())
+
+
+def render_aspect_insights() -> None:
+    """Aspect-based sentiment: what customers are happy or unhappy about."""
+    st.markdown('<div class="section-label">Aspect Insights</div>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">What customers are happy or unhappy about</h2>', unsafe_allow_html=True)
+    st.caption(
+        "Each review is split into clauses, business aspects are detected, and every aspect is scored "
+        "by the clause that mentions it, so one mixed review can be positive about one thing and negative about another."
+    )
+    results = st.session_state.get("batch_results")
+    if results is None or len(results) == 0:
+        st.info("Run a feedback analysis from the Overview tab first, then come back here.")
+        return
+
+    cache_key = f"aspect_df_{CACHE_VERSION}_{st.session_state.get('batch_fingerprint')}"
+    if st.button("Run aspect analysis", type="primary", use_container_width=True, key="aspect_run_button"):
+        with st.spinner("Scoring aspects clause by clause…"):
+            st.session_state[cache_key] = analyze_aspects(get_pipeline().sentiment, results)
+    aspect_df = st.session_state.get(cache_key)
+    if aspect_df is None:
+        st.markdown(
+            '<div class="empty-state"><h3>Aspects not analyzed yet</h3>'
+            '<p>Click <strong>Run aspect analysis</strong> to score delivery, price, support, app and other aspects.</p></div>',
+            unsafe_allow_html=True,
+        )
+        return
+    if aspect_df.empty:
+        st.info("No business aspects were found in these reviews. The keyword lexicon is in src/aspects.py and can be extended.")
+        return
+
+    summary = summarize_aspects(aspect_df)
+    with_aspect = int(aspect_df["feedback_id"].nunique())
+    top = summary.iloc[0]
+    k1, k2, k3, k4 = st.columns(4)
+    for col, label, value, note in [
+        (k1, "Reviews analyzed", f"{len(results):,}", "from the Overview run"),
+        (k2, "Mention an aspect", f"{with_aspect / len(results):.0%}", f"{with_aspect:,} reviews"),
+        (k3, "Aspect mentions", f"{len(aspect_df):,}", f"{len(summary)} different aspects"),
+        (k4, "Most discussed", html.escape(str(top["aspect"]).title()), f"{int(top['mentions']):,} mentions"),
+    ]:
+        col.markdown(
+            f'<div class="kpi"><div class="kpi-label">{label}</div>'
+            f'<div class="kpi-value" style="font-size:1.35rem">{value}</div><div class="kpi-note">{note}</div></div>',
+            unsafe_allow_html=True,
+        )
+
+    rated = summary[summary["mentions"] >= 3]
+    if rated.empty:
+        rated = summary
+    worst = rated.sort_values(["negative_share", "mentions"], ascending=False).iloc[0]
+    best = rated.sort_values(["positive_share", "mentions"], ascending=False).iloc[0]
+    st.markdown('<div class="section-label">What the aspects are telling us</div>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="insight"><strong>Biggest pain point: {html.escape(str(worst["aspect"]))}.</strong> '
+        f'{worst["negative_share"]:.0%} of its {int(worst["mentions"])} mentions are negative.</div>'
+        f'<div class="insight"><strong>Strongest asset: {html.escape(str(best["aspect"]))}.</strong> '
+        f'{best["positive_share"]:.0%} of its {int(best["mentions"])} mentions are positive.</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown('<div class="section-label">Sentiment by aspect</div>', unsafe_allow_html=True)
+    long = summary.melt(id_vars=["aspect"], value_vars=["positive", "negative", "neutral"], var_name="sentiment", value_name="count")
+    fig = px.bar(
+        long, x="aspect", y="count", color="sentiment", barmode="group",
+        category_orders={"aspect": summary["aspect"].tolist()},
+        color_discrete_map={"positive": "#0f766e", "negative": "#dc2626", "neutral": "#94a3b8"},
+    )
+    fig.update_layout(margin=dict(t=30, b=10, l=10, r=10), legend=dict(orientation="h", y=-.25), paper_bgcolor="rgba(0,0,0,0)")
+    st.plotly_chart(fig, use_container_width=True, key="chart_aspect_grouped")
+
+    left, right = st.columns(2)
+    with left:
+        st.markdown('<div class="section-label">Top negative aspects (share of mentions)</div>', unsafe_allow_html=True)
+        neg = rated.sort_values("negative_share", ascending=False).head(6).sort_values("negative_share")
+        fig_neg = go.Figure(go.Bar(x=neg["negative_share"] * 100, y=neg["aspect"], orientation="h", marker_color="#dc2626"))
+        fig_neg.update_layout(xaxis_title="% negative", margin=dict(t=10, b=10, l=10, r=10), paper_bgcolor="rgba(0,0,0,0)")
+        st.plotly_chart(fig_neg, use_container_width=True, key="chart_aspect_negative")
+    with right:
+        st.markdown('<div class="section-label">Top positive aspects (share of mentions)</div>', unsafe_allow_html=True)
+        pos = rated.sort_values("positive_share", ascending=False).head(6).sort_values("positive_share")
+        fig_pos = go.Figure(go.Bar(x=pos["positive_share"] * 100, y=pos["aspect"], orientation="h", marker_color="#0f766e"))
+        fig_pos.update_layout(xaxis_title="% positive", margin=dict(t=10, b=10, l=10, r=10), paper_bgcolor="rgba(0,0,0,0)")
+        st.plotly_chart(fig_pos, use_container_width=True, key="chart_aspect_positive")
+    st.caption("Aspects with fewer than 3 mentions are left out of these rankings when enough others exist.")
+
+    st.markdown('<div class="section-label">Evidence: the clause behind each prediction</div>', unsafe_allow_html=True)
+    f1, f2 = st.columns(2)
+    chosen_aspect = f1.selectbox("Aspect", ["All"] + summary["aspect"].tolist(), key="aspect_filter_aspect")
+    chosen_sentiment = f2.selectbox("Sentiment", ["All", "negative", "positive", "neutral"], key="aspect_filter_sentiment")
+    view = aspect_df
+    if chosen_aspect != "All":
+        view = view[view["aspect"] == chosen_aspect]
+    if chosen_sentiment != "All":
+        view = view[view["aspect_sentiment"] == chosen_sentiment]
+    st.caption(f"Showing {min(len(view), 200):,} of {len(view):,} aspect mentions")
+    st.dataframe(
+        view[["aspect", "aspect_sentiment", "confidence", "clause", "review_text"]].head(200),
+        use_container_width=True,
+        hide_index=True,
+        column_config={"confidence": st.column_config.ProgressColumn("Confidence", min_value=0, max_value=1, format="%.2f")},
+    )
+    st.download_button(
+        "Download aspect results (CSV)",
+        aspect_df.to_csv(index=False),
+        "aspect_results.csv",
+        "text/csv",
+        key="aspect_download_button",
+    )
+
+    with st.expander("Validate against your own labels (for the evaluation section of your report)"):
+        st.caption(
+            "1) Download the sample below. 2) Fill the true_sentiment column by hand with positive, negative or neutral. "
+            "3) Upload the file to get accuracy, precision, recall, F1 and a confusion matrix."
+        )
+        st.download_button(
+            "Download labelling template (40 rows)",
+            validation_template(aspect_df).to_csv(index=False),
+            "aspect_validation_template.csv",
+            "text/csv",
+            key="aspect_template_button",
+        )
+        labeled_file = st.file_uploader("Upload the labelled CSV", type=["csv"], key="aspect_labeled_upload")
+        if labeled_file is not None:
+            try:
+                metrics = evaluate_labels(pd.read_csv(labeled_file))
+            except Exception as exc:
+                st.error(f"Could not evaluate this file: {exc}")
+            else:
+                m1, m2, m3 = st.columns(3)
+                m1.metric("Labelled rows", metrics["n"])
+                m2.metric("Accuracy", f"{metrics['accuracy']:.1%}")
+                m3.metric("Macro F1", f"{metrics['macro_f1']:.2f}")
+                st.dataframe(metrics["report"], hide_index=True, use_container_width=True)
+                fig_cm = px.imshow(metrics["confusion"], text_auto=True, color_continuous_scale="Blues", aspect="auto")
+                fig_cm.update_layout(title="Confusion matrix", paper_bgcolor="rgba(0,0,0,0)")
+                st.plotly_chart(fig_cm, use_container_width=True, key="chart_aspect_confusion")
+
+
 def render_model_methodology() -> None:
     st.markdown('<div class="section-label">Model & Methodology</div>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">How SignalDesk works</h2>', unsafe_allow_html=True)
-    st.markdown(
-        '<div class="insight"><strong>Sentiment:</strong> Binary positive/negative classification using '
-        'DistilBERT (distilbert-base-uncased-finetuned-sst-2-english) with batched PyTorch inference and GPU auto-detection.</div>',
-        unsafe_allow_html=True,
+
+    def box(title: str, body: str) -> None:
+        st.markdown(f'<div class="insight"><strong>{title}</strong> {body}</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="section-label">Pipeline</div>', unsafe_allow_html=True)
+    box(
+        "Flow:",
+        "Upload → clean and de-duplicate → overall sentiment → entities and keywords → aspect detection → "
+        "clause-level aspect sentiment → topic clustering → dashboard and CSV export.",
     )
-    st.markdown(
-        '<div class="insight"><strong>Named entities:</strong> spaCy NER (en_core_web_sm) with batched pipe processing '
-        'and a deterministic regex fallback for emails, order IDs, products, and locations when the spaCy model is unavailable.</div>',
-        unsafe_allow_html=True,
+    st.markdown('<div class="section-label">Models and methods</div>', unsafe_allow_html=True)
+    box(
+        "Overall sentiment:",
+        "DistilBERT fine-tuned on SST-2 (distilbert-base-uncased-finetuned-sst-2-english), run in length-sorted batches on CPU or GPU. "
+        "It is a two-class model (positive/negative) trained on movie-review sentences, so scores on product or support text are "
+        "indicative, not guaranteed. A confidence of 99% means the model is sure, not that it is right.",
     )
-    st.markdown(
-        '<div class="insight"><strong>Topic discovery:</strong> Optional BERTopic stack. Semantic clustering uses sentence-transformer '
-        'embeddings projected with UMAP and clustered with HDBSCAN. Topic keywords/labels use CountVectorizer + c-TF-IDF with '
-        'bigrams and a custom stopword list that preserves negation terms. Topic -1 is treated as outliers. '
-        'Install requirements-topics.txt to enable.</div>',
-        unsafe_allow_html=True,
+    box(
+        "Word influence (\"why this prediction?\"):",
+        "Occlusion. Each word is removed in turn and the change in the model's log-odds is measured. Words that push toward the "
+        "predicted class are shaded; green pushes positive, red pushes negative, darker is stronger. Log-odds are used because "
+        "probabilities saturate near 100% and would hide every word.",
     )
-    st.markdown(
-        '<div class="insight"><strong>Limitations:</strong> Sentiment is binary (positive/negative); no Neutral category is shown '
-        'unless a three-class model is separately implemented and evaluated. Small datasets (&lt; 20 records) produce exploratory '
-        'topic results only. BERTopic introduces heavier dependencies and a one-time model download.</div>',
-        unsafe_allow_html=True,
+    box(
+        "Named entities:",
+        "spaCy NER (en_core_web_sm) finds people, organizations, places, dates and similar named items, with a regex fallback if the "
+        "model is missing. Most reviews contain none, so an empty entity column is normal.",
+    )
+    box(
+        "Business aspects and aspect-based sentiment (ABSA):",
+        "A keyword lexicon (src/aspects.py) detects 12 aspects such as delivery, price, support, app and refunds. Each review is split "
+        "into clauses at sentence ends and contrast words (but, however, although), and a clause that mixes aspects is split further. "
+        "Each aspect is scored by the clause that mentions it using the same sentiment model, so no extra training is needed. "
+        "Because the model is two-class, predictions under 65% confidence are reported as neutral (a heuristic, not a trained class).",
+    )
+    box(
+        "Topic discovery:",
+        "Sentence-transformer embeddings (all-MiniLM-L6-v2) are reduced with UMAP and clustered with HDBSCAN through BERTopic. Topic labels come "
+        "from c-TF-IDF over unigrams and bigrams with a stop-word list that keeps negations such as not and never. UMAP and HDBSCAN settings adapt "
+        "to dataset size, topic -1 means unclustered outliers, and at least 10 unique reviews are required.",
+    )
+    st.markdown('<div class="section-label">Data handling</div>', unsafe_allow_html=True)
+    box(
+        "Input rules:",
+        "CSV, TSV, JSON and TXT are accepted. Empty rows are removed and counted, exact duplicates can be removed, and the number of analyzed "
+        "reviews can be capped. For a laptop CPU, 500-1,000 reviews is comfortable and about 2,000 is the practical maximum.",
+    )
+    st.markdown('<div class="section-label">Evaluation</div>', unsafe_allow_html=True)
+    box(
+        "How accuracy is measured:",
+        "Overall sentiment and aspect results are not scored against ground truth automatically. In Aspect Insights you can download a "
+        "40-row sample, label it by hand, and upload it to get accuracy, precision, recall, F1 and a confusion matrix. "
+        "Any accuracy figure should be quoted with that sample size.",
+    )
+    st.markdown('<div class="section-label">Known limitations</div>', unsafe_allow_html=True)
+    box(
+        "Limits to state openly:",
+        "Sentiment is two-class and trained on a different domain. Aspect detection is keyword-based, so unlisted wording is missed and a keyword "
+        "in an unrelated sense can be matched. Sarcasm and negation spanning clauses can be misread. Two aspects joined without a comma, "
+        "\"and\" or contrast word share one score. Topic results on small or repetitive data are exploratory.",
     )
 
 
@@ -842,8 +1052,8 @@ st.markdown(
 )
 
 # Navigation — Overview is first and handles both upload and results
-overview_tab, batch_tab, playground_tab, topic_tab, method_tab = st.tabs(
-    ["◈ Overview", "📥 Feedback Analysis", "⌁ Quick Feedback Analysis", "⌂ Topic Intelligence", "📘 Model & Methodology"]
+overview_tab, batch_tab, aspect_tab, playground_tab, topic_tab, method_tab = st.tabs(
+    ["◈ Overview", "📥 Feedback Analysis", "◎ Aspect Insights", "⌁ Quick Feedback Analysis", "⌂ Topic Intelligence", "📘 Model & Methodology"]
 )
 
 # Render each tab independently — errors in one tab do not affect others
@@ -851,28 +1061,34 @@ with overview_tab:
     try:
         render_overview()
     except Exception as exc:
-        st.error(f"Overview error: {exc}")
+        show_error("Overview", exc)
 
 with batch_tab:
     try:
         render_feedback_analysis()
     except Exception as exc:
-        st.error(f"Feedback Analysis error: {exc}")
+        show_error("Feedback Analysis", exc)
+
+with aspect_tab:
+    try:
+        render_aspect_insights()
+    except Exception as exc:
+        show_error("Aspect Insights", exc)
 
 with playground_tab:
     try:
         render_playground()
     except Exception as exc:
-        st.error(f"Quick Feedback Analysis error: {exc}")
+        show_error("Quick Feedback Analysis", exc)
 
 with topic_tab:
     try:
         render_topic_discovery()
     except Exception as exc:
-        st.error(f"Topic Intelligence error: {exc}")
+        show_error("Topic Intelligence", exc)
 
 with method_tab:
     try:
         render_model_methodology()
     except Exception as exc:
-        st.error(f"Model & Methodology error: {exc}")
+        show_error("Model & Methodology", exc)
