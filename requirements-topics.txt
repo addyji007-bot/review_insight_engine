@@ -1,0 +1,6 @@
+# Optional topic discovery stack (BERTopic)
+# Install with: pip install -r requirements-topics.txt
+bertopic==0.17.4
+sentence-transformers>=2.2.0
+umap-learn>=0.5.0
+hdbscan>=0.8.0

@@ -1,0 +1,501 @@
+comment_id,customer_type,service_area,comment_text,sentiment,satisfaction_score,resolution_needed
+1,New,Support,My experience with the company was acceptable and the process was standard.,neutral,3,0
+2,New,Sales,I am disappointed with the company because the delivery was delayed.,negative,2,1
+3,New,Product,The experience with this company was excellent because customer support was very helpful.,positive,4,0
+4,Returning,Delivery,I had a great experience and the company the staff was very professional.,positive,4,0
+5,New,Product,The experience with this company was excellent because the product quality was excellent.,positive,4,0
+6,New,Product,I had a great experience and the company customer support was very helpful.,positive,5,0
+7,Returning,Support,The experience was neither good nor bad because the service was average.,neutral,4,0
+8,New,Support,I am disappointed with the company because the product arrived damaged.,negative,2,1
+9,Returning,Support,I would not recommend this company because customer support was not helpful.,negative,2,1
+10,New,Support,The experience with this company was excellent because the product quality was excellent.,positive,4,0
+11,Returning,Sales,The company did a great job and the product quality was excellent.,positive,4,0
+12,Returning,Sales,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+13,Returning,Product,I had a great experience and the company the response time was fast.,positive,5,0
+14,Returning,Product,The experience with this company was excellent because the response time was fast.,positive,5,0
+15,New,Sales,The experience with this company was excellent because customer support was very helpful.,positive,5,0
+16,New,Product,The service did not meet my expectations and the product arrived damaged.,negative,2,1
+17,New,Sales,The company did a great job and customer support was very helpful.,positive,5,0
+18,Returning,Product,"Overall, the company met my expectations, but the process was standard.",neutral,3,0
+19,New,Delivery,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,4,0
+20,New,Sales,The service did not meet my expectations and the product arrived damaged.,negative,2,1
+21,Returning,Delivery,The experience was neither good nor bad because the service was average.,neutral,3,0
+22,New,Product,The experience with this company was excellent because customer support was very helpful.,positive,4,0
+23,New,Delivery,The service did not meet my expectations and the product arrived damaged.,negative,2,1
+24,Returning,Product,The experience was neither good nor bad because there were no major issues.,neutral,3,0
+25,New,Support,I had a bad experience since the service had several issues.,negative,2,1
+26,New,Sales,I had a great experience and the company the staff was very professional.,positive,4,0
+27,New,Delivery,I am very satisfied with the service provided by the company. the response time was fast.,positive,4,0
+28,New,Support,The experience with this company was excellent because the product quality was excellent.,positive,5,0
+29,Returning,Support,I would not recommend this company because the product arrived damaged.,negative,2,1
+30,Returning,Product,The company did a great job and the product quality was excellent.,positive,5,0
+31,Returning,Delivery,I am disappointed with the company because the response time was very slow.,negative,1,1
+32,New,Product,I am disappointed with the company because the product arrived damaged.,negative,1,1
+33,New,Sales,The experience with this company was excellent because the product quality was excellent.,positive,5,0
+34,New,Support,My experience with the company was acceptable and the service was average.,neutral,3,0
+35,Returning,Sales,The company did a great job and the delivery arrived on time.,positive,4,0
+36,Returning,Delivery,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,5,0
+37,Returning,Support,The experience was neither good nor bad because there were no major issues.,neutral,3,0
+38,New,Product,I am disappointed with the company because customer support was not helpful.,negative,1,1
+39,New,Sales,"The service was okay, and the service was average.",neutral,3,0
+40,New,Sales,"The service was okay, and the experience was acceptable.",neutral,3,0
+41,New,Delivery,The experience was neither good nor bad because the process was standard.,neutral,4,0
+42,Returning,Delivery,The company did a great job and the response time was fast.,positive,5,0
+43,New,Sales,I am disappointed with the company because the response time was very slow.,negative,2,1
+44,New,Support,"Overall, the company met my expectations, but there were no major issues.",neutral,4,0
+45,New,Delivery,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+46,New,Sales,I am disappointed with the company because the product arrived damaged.,negative,2,1
+47,New,Delivery,The service did not meet my expectations and customer support was not helpful.,negative,2,1
+48,Returning,Sales,I had a great experience and the company customer support was very helpful.,positive,5,0
+49,New,Delivery,The company did a great job and the product quality was excellent.,positive,4,0
+50,Returning,Sales,I had a bad experience since the product arrived damaged.,negative,2,1
+51,Returning,Support,The experience with this company was excellent because customer support was very helpful.,positive,4,0
+52,New,Delivery,My experience with the company was acceptable and the process was standard.,neutral,4,0
+53,Returning,Support,The experience with this company was excellent because the staff was very professional.,positive,5,0
+54,Returning,Sales,The service did not meet my expectations and the product arrived damaged.,negative,1,1
+55,Returning,Support,I had a great experience and the company the delivery arrived on time.,positive,4,0
+56,Returning,Support,I am disappointed with the company because the service had several issues.,negative,1,1
+57,New,Support,The company did a great job and the product quality was excellent.,positive,5,0
+58,Returning,Sales,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+59,Returning,Sales,I had a bad experience since customer support was not helpful.,negative,2,1
+60,New,Sales,I had a great experience and the company the response time was fast.,positive,5,0
+61,New,Product,"Overall, the company met my expectations, but the process was standard.",neutral,4,0
+62,Returning,Sales,The service did not meet my expectations and customer support was not helpful.,negative,1,1
+63,New,Delivery,"The service was okay, and the process was standard.",neutral,4,0
+64,Returning,Delivery,My experience with the company was acceptable and the process was standard.,neutral,4,0
+65,Returning,Product,"Overall, the company met my expectations, but there were no major issues.",neutral,3,0
+66,New,Delivery,"The service was okay, and the process was standard.",neutral,4,0
+67,Returning,Product,The company did a great job and customer support was very helpful.,positive,5,0
+68,New,Delivery,"The service was okay, and the experience was acceptable.",neutral,3,0
+69,Returning,Support,"Overall, the company met my expectations, but the service was average.",neutral,3,0
+70,New,Product,The service did not meet my expectations and the response time was very slow.,negative,1,1
+71,New,Product,My experience with the company was acceptable and the experience was acceptable.,neutral,4,0
+72,New,Product,"The service was okay, and there were no major issues.",neutral,3,0
+73,New,Product,The company did a great job and the staff was very professional.,positive,4,0
+74,Returning,Product,The company did a great job and customer support was very helpful.,positive,5,0
+75,Returning,Delivery,I would not recommend this company because the product arrived damaged.,negative,2,1
+76,New,Delivery,I had a bad experience since the delivery was delayed.,negative,2,1
+77,Returning,Delivery,"Overall, the company met my expectations, but there were no major issues.",neutral,4,0
+78,New,Product,I am disappointed with the company because the product arrived damaged.,negative,1,1
+79,Returning,Delivery,"The service was okay, and the service was average.",neutral,4,0
+80,Returning,Product,The experience was neither good nor bad because the service was average.,neutral,3,0
+81,Returning,Sales,I am disappointed with the company because the delivery was delayed.,negative,2,1
+82,New,Product,I had a bad experience since the service had several issues.,negative,2,1
+83,Returning,Delivery,The company did a great job and the delivery arrived on time.,positive,4,0
+84,New,Sales,The experience was neither good nor bad because there were no major issues.,neutral,4,0
+85,New,Product,I am disappointed with the company because the response time was very slow.,negative,2,1
+86,New,Product,I had a great experience and the company the delivery arrived on time.,positive,5,0
+87,Returning,Sales,The company did a great job and the product quality was excellent.,positive,5,0
+88,New,Sales,My experience with the company was acceptable and the process was standard.,neutral,3,0
+89,New,Support,The service did not meet my expectations and the product arrived damaged.,negative,1,1
+90,Returning,Delivery,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,4,0
+91,New,Delivery,The service did not meet my expectations and the delivery was delayed.,negative,1,1
+92,Returning,Support,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+93,New,Sales,The experience with this company was excellent because the staff was very professional.,positive,5,0
+94,Returning,Sales,The company did a great job and the product quality was excellent.,positive,4,0
+95,Returning,Product,I would not recommend this company because the response time was very slow.,negative,2,1
+96,Returning,Product,I would not recommend this company because the product arrived damaged.,negative,2,1
+97,New,Delivery,"Overall, the company met my expectations, but the process was standard.",neutral,3,0
+98,Returning,Sales,The service did not meet my expectations and the service had several issues.,negative,2,1
+99,New,Delivery,"Overall, the company met my expectations, but there were no major issues.",neutral,4,0
+100,New,Support,I had a bad experience since customer support was not helpful.,negative,2,1
+101,Returning,Product,The company did a great job and the delivery arrived on time.,positive,4,0
+102,New,Product,My experience with the company was acceptable and the service was average.,neutral,4,0
+103,Returning,Product,"Overall, the company met my expectations, but the process was standard.",neutral,4,0
+104,Returning,Delivery,I had a bad experience since customer support was not helpful.,negative,2,1
+105,New,Support,I am very satisfied with the service provided by the company. the response time was fast.,positive,5,0
+106,New,Support,The company did a great job and the product quality was excellent.,positive,5,0
+107,New,Support,I had a great experience and the company the response time was fast.,positive,5,0
+108,New,Product,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,5,0
+109,Returning,Product,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,5,0
+110,Returning,Sales,"The service was okay, and the service was average.",neutral,4,0
+111,New,Support,I would not recommend this company because the service had several issues.,negative,1,1
+112,New,Product,I had a great experience and the company the staff was very professional.,positive,4,0
+113,Returning,Delivery,"The service was okay, and the experience was acceptable.",neutral,4,0
+114,New,Support,I would not recommend this company because customer support was not helpful.,negative,1,1
+115,New,Support,"Overall, the company met my expectations, but the service was average.",neutral,3,0
+116,Returning,Product,"The service was okay, and the service was average.",neutral,4,0
+117,Returning,Sales,The experience with this company was excellent because the product quality was excellent.,positive,5,0
+118,New,Support,"Overall, the company met my expectations, but there were no major issues.",neutral,4,0
+119,New,Support,"Overall, the company met my expectations, but there were no major issues.",neutral,3,0
+120,Returning,Delivery,I had a bad experience since the service had several issues.,negative,1,1
+121,New,Sales,"Overall, the company met my expectations, but the experience was acceptable.",neutral,4,0
+122,New,Sales,I had a bad experience since the delivery was delayed.,negative,2,1
+123,New,Product,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,4,0
+124,Returning,Product,The experience was neither good nor bad because the process was standard.,neutral,3,0
+125,Returning,Delivery,I would not recommend this company because customer support was not helpful.,negative,2,1
+126,Returning,Delivery,"The service was okay, and the process was standard.",neutral,4,0
+127,New,Delivery,The experience was neither good nor bad because the service was average.,neutral,4,0
+128,Returning,Product,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,4,0
+129,Returning,Sales,I had a great experience and the company customer support was very helpful.,positive,5,0
+130,Returning,Sales,The experience with this company was excellent because the product quality was excellent.,positive,5,0
+131,New,Product,The experience with this company was excellent because the response time was fast.,positive,5,0
+132,New,Product,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,4,0
+133,Returning,Product,I had a bad experience since the delivery was delayed.,negative,2,1
+134,Returning,Support,The service did not meet my expectations and the service had several issues.,negative,1,1
+135,Returning,Delivery,The service did not meet my expectations and the response time was very slow.,negative,2,1
+136,Returning,Product,I had a bad experience since the response time was very slow.,negative,2,1
+137,Returning,Delivery,I would not recommend this company because the delivery was delayed.,negative,2,1
+138,New,Support,The experience was neither good nor bad because the experience was acceptable.,neutral,4,0
+139,Returning,Product,"The service was okay, and the experience was acceptable.",neutral,3,0
+140,Returning,Sales,I would not recommend this company because the service had several issues.,negative,1,1
+141,New,Product,I had a great experience and the company the staff was very professional.,positive,5,0
+142,New,Product,The experience with this company was excellent because the delivery arrived on time.,positive,4,0
+143,New,Delivery,I had a bad experience since customer support was not helpful.,negative,2,1
+144,New,Sales,I would not recommend this company because customer support was not helpful.,negative,2,1
+145,Returning,Sales,I had a great experience and the company the response time was fast.,positive,4,0
+146,Returning,Sales,I am disappointed with the company because the service had several issues.,negative,1,1
+147,Returning,Product,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+148,New,Support,The company did a great job and customer support was very helpful.,positive,4,0
+149,Returning,Support,The company did a great job and customer support was very helpful.,positive,4,0
+150,New,Product,I had a great experience and the company the delivery arrived on time.,positive,5,0
+151,Returning,Delivery,The service did not meet my expectations and the response time was very slow.,negative,2,1
+152,Returning,Support,The experience was neither good nor bad because the process was standard.,neutral,4,0
+153,Returning,Delivery,I would not recommend this company because the response time was very slow.,negative,1,1
+154,Returning,Sales,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+155,New,Delivery,My experience with the company was acceptable and the experience was acceptable.,neutral,4,0
+156,New,Sales,The experience with this company was excellent because customer support was very helpful.,positive,5,0
+157,New,Delivery,I am disappointed with the company because customer support was not helpful.,negative,2,1
+158,Returning,Support,I am disappointed with the company because customer support was not helpful.,negative,2,1
+159,New,Delivery,I had a great experience and the company customer support was very helpful.,positive,5,0
+160,New,Product,I would not recommend this company because customer support was not helpful.,negative,2,1
+161,Returning,Sales,The service did not meet my expectations and the product arrived damaged.,negative,2,1
+162,Returning,Delivery,I am disappointed with the company because customer support was not helpful.,negative,1,1
+163,New,Support,"Overall, the company met my expectations, but the experience was acceptable.",neutral,4,0
+164,Returning,Delivery,"Overall, the company met my expectations, but there were no major issues.",neutral,3,0
+165,New,Delivery,My experience with the company was acceptable and there were no major issues.,neutral,3,0
+166,New,Product,I am disappointed with the company because the response time was very slow.,negative,1,1
+167,New,Product,The experience was neither good nor bad because there were no major issues.,neutral,4,0
+168,New,Product,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+169,Returning,Delivery,"The service was okay, and the process was standard.",neutral,3,0
+170,Returning,Sales,I had a great experience and the company the response time was fast.,positive,4,0
+171,New,Support,My experience with the company was acceptable and the service was average.,neutral,4,0
+172,New,Support,The service did not meet my expectations and the response time was very slow.,negative,1,1
+173,Returning,Support,The experience with this company was excellent because customer support was very helpful.,positive,4,0
+174,New,Support,I had a bad experience since the product arrived damaged.,negative,1,1
+175,New,Support,The experience with this company was excellent because customer support was very helpful.,positive,5,0
+176,New,Product,The experience with this company was excellent because the delivery arrived on time.,positive,4,0
+177,New,Sales,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+178,New,Product,I had a bad experience since the service had several issues.,negative,1,1
+179,Returning,Sales,I would not recommend this company because the response time was very slow.,negative,2,1
+180,New,Support,I had a bad experience since the delivery was delayed.,negative,1,1
+181,Returning,Product,I had a great experience and the company the delivery arrived on time.,positive,5,0
+182,Returning,Product,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,4,0
+183,Returning,Product,I would not recommend this company because customer support was not helpful.,negative,2,1
+184,Returning,Delivery,I had a bad experience since the service had several issues.,negative,2,1
+185,New,Sales,I would not recommend this company because the response time was very slow.,negative,1,1
+186,Returning,Sales,"Overall, the company met my expectations, but there were no major issues.",neutral,3,0
+187,Returning,Delivery,The experience was neither good nor bad because the service was average.,neutral,4,0
+188,New,Sales,The experience with this company was excellent because the response time was fast.,positive,5,0
+189,New,Product,I had a great experience and the company the staff was very professional.,positive,5,0
+190,New,Support,I am disappointed with the company because the delivery was delayed.,negative,2,1
+191,New,Support,I had a great experience and the company the product quality was excellent.,positive,5,0
+192,New,Sales,I would not recommend this company because the response time was very slow.,negative,1,1
+193,Returning,Delivery,The service did not meet my expectations and the service had several issues.,negative,2,1
+194,New,Support,I had a great experience and the company the product quality was excellent.,positive,4,0
+195,Returning,Product,I am very satisfied with the service provided by the company. the staff was very professional.,positive,5,0
+196,New,Sales,The experience was neither good nor bad because the experience was acceptable.,neutral,4,0
+197,Returning,Sales,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+198,Returning,Support,I am very satisfied with the service provided by the company. the staff was very professional.,positive,4,0
+199,New,Sales,I had a bad experience since customer support was not helpful.,negative,2,1
+200,Returning,Support,The experience was neither good nor bad because there were no major issues.,neutral,3,0
+201,New,Product,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+202,Returning,Product,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+203,New,Product,The company did a great job and the staff was very professional.,positive,5,0
+204,New,Support,I had a bad experience since the response time was very slow.,negative,2,1
+205,Returning,Delivery,The experience was neither good nor bad because the service was average.,neutral,4,0
+206,New,Delivery,The experience with this company was excellent because the staff was very professional.,positive,4,0
+207,New,Delivery,The experience with this company was excellent because the response time was fast.,positive,4,0
+208,Returning,Product,The experience with this company was excellent because the staff was very professional.,positive,4,0
+209,Returning,Support,I would not recommend this company because the delivery was delayed.,negative,2,1
+210,Returning,Sales,The experience was neither good nor bad because the experience was acceptable.,neutral,4,0
+211,Returning,Sales,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+212,Returning,Product,I had a great experience and the company the staff was very professional.,positive,4,0
+213,Returning,Product,My experience with the company was acceptable and the experience was acceptable.,neutral,3,0
+214,Returning,Sales,My experience with the company was acceptable and the experience was acceptable.,neutral,3,0
+215,Returning,Product,"The service was okay, and the service was average.",neutral,3,0
+216,Returning,Product,"The service was okay, and the process was standard.",neutral,4,0
+217,New,Delivery,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+218,New,Delivery,The company did a great job and the product quality was excellent.,positive,5,0
+219,Returning,Support,The experience with this company was excellent because the product quality was excellent.,positive,5,0
+220,Returning,Support,My experience with the company was acceptable and the process was standard.,neutral,4,0
+221,New,Delivery,My experience with the company was acceptable and the experience was acceptable.,neutral,4,0
+222,New,Support,The experience with this company was excellent because the product quality was excellent.,positive,5,0
+223,New,Sales,The service did not meet my expectations and the response time was very slow.,negative,2,1
+224,New,Support,"The service was okay, and the experience was acceptable.",neutral,3,0
+225,Returning,Delivery,The service did not meet my expectations and the service had several issues.,negative,1,1
+226,Returning,Support,"The service was okay, and the experience was acceptable.",neutral,4,0
+227,Returning,Product,"Overall, the company met my expectations, but the experience was acceptable.",neutral,3,0
+228,New,Support,"Overall, the company met my expectations, but the experience was acceptable.",neutral,4,0
+229,Returning,Delivery,The service did not meet my expectations and customer support was not helpful.,negative,1,1
+230,New,Support,My experience with the company was acceptable and the service was average.,neutral,4,0
+231,New,Product,The experience with this company was excellent because the delivery arrived on time.,positive,4,0
+232,Returning,Delivery,I am disappointed with the company because the service had several issues.,negative,1,1
+233,New,Delivery,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,4,0
+234,New,Delivery,I had a bad experience since the product arrived damaged.,negative,1,1
+235,Returning,Sales,I would not recommend this company because the product arrived damaged.,negative,2,1
+236,New,Product,I am disappointed with the company because customer support was not helpful.,negative,1,1
+237,New,Sales,I had a great experience and the company the response time was fast.,positive,5,0
+238,Returning,Sales,The company did a great job and the staff was very professional.,positive,4,0
+239,Returning,Sales,"The service was okay, and there were no major issues.",neutral,4,0
+240,New,Delivery,"The service was okay, and the experience was acceptable.",neutral,3,0
+241,New,Product,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,5,0
+242,New,Delivery,I had a bad experience since the response time was very slow.,negative,2,1
+243,New,Sales,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,5,0
+244,Returning,Support,I had a great experience and the company the response time was fast.,positive,5,0
+245,Returning,Support,I am disappointed with the company because the service had several issues.,negative,1,1
+246,Returning,Product,The experience with this company was excellent because the staff was very professional.,positive,5,0
+247,New,Delivery,I would not recommend this company because customer support was not helpful.,negative,1,1
+248,New,Delivery,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+249,Returning,Support,The experience was neither good nor bad because the experience was acceptable.,neutral,4,0
+250,New,Product,The experience was neither good nor bad because the process was standard.,neutral,4,0
+251,Returning,Sales,The experience with this company was excellent because customer support was very helpful.,positive,5,0
+252,Returning,Support,I had a great experience and the company the product quality was excellent.,positive,5,0
+253,Returning,Product,"Overall, the company met my expectations, but the experience was acceptable.",neutral,3,0
+254,Returning,Support,I am very satisfied with the service provided by the company. the staff was very professional.,positive,5,0
+255,New,Support,The service did not meet my expectations and the delivery was delayed.,negative,2,1
+256,New,Support,I had a great experience and the company the product quality was excellent.,positive,5,0
+257,New,Support,"Overall, the company met my expectations, but the process was standard.",neutral,4,0
+258,New,Sales,The experience was neither good nor bad because the process was standard.,neutral,4,0
+259,New,Delivery,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+260,Returning,Support,I would not recommend this company because the product arrived damaged.,negative,2,1
+261,Returning,Sales,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,4,0
+262,Returning,Delivery,I had a bad experience since customer support was not helpful.,negative,1,1
+263,New,Support,The service did not meet my expectations and customer support was not helpful.,negative,1,1
+264,Returning,Delivery,The service did not meet my expectations and the service had several issues.,negative,1,1
+265,Returning,Product,"The service was okay, and the service was average.",neutral,3,0
+266,Returning,Sales,I would not recommend this company because the delivery was delayed.,negative,2,1
+267,Returning,Delivery,I had a great experience and the company the staff was very professional.,positive,5,0
+268,New,Sales,The experience with this company was excellent because the response time was fast.,positive,5,0
+269,Returning,Support,"Overall, the company met my expectations, but there were no major issues.",neutral,3,0
+270,New,Delivery,I had a great experience and the company the staff was very professional.,positive,5,0
+271,New,Support,I had a great experience and the company customer support was very helpful.,positive,4,0
+272,New,Sales,I had a great experience and the company customer support was very helpful.,positive,4,0
+273,New,Product,I had a great experience and the company the response time was fast.,positive,5,0
+274,New,Product,I had a bad experience since customer support was not helpful.,negative,2,1
+275,Returning,Product,I am very satisfied with the service provided by the company. the staff was very professional.,positive,4,0
+276,Returning,Delivery,"The service was okay, and the process was standard.",neutral,3,0
+277,Returning,Sales,I had a bad experience since the service had several issues.,negative,1,1
+278,Returning,Support,The company did a great job and the staff was very professional.,positive,5,0
+279,Returning,Support,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+280,New,Support,The service did not meet my expectations and customer support was not helpful.,negative,2,1
+281,Returning,Sales,The experience was neither good nor bad because the experience was acceptable.,neutral,4,0
+282,New,Support,The company did a great job and customer support was very helpful.,positive,5,0
+283,Returning,Product,My experience with the company was acceptable and the service was average.,neutral,4,0
+284,New,Delivery,I am very satisfied with the service provided by the company. the staff was very professional.,positive,5,0
+285,Returning,Sales,I would not recommend this company because customer support was not helpful.,negative,1,1
+286,New,Product,"The service was okay, and the process was standard.",neutral,4,0
+287,New,Product,"Overall, the company met my expectations, but the service was average.",neutral,3,0
+288,New,Support,I had a great experience and the company customer support was very helpful.,positive,5,0
+289,New,Support,The experience was neither good nor bad because the service was average.,neutral,3,0
+290,New,Support,I would not recommend this company because the delivery was delayed.,negative,2,1
+291,Returning,Delivery,I had a great experience and the company the response time was fast.,positive,5,0
+292,New,Delivery,The experience was neither good nor bad because the process was standard.,neutral,4,0
+293,New,Product,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,5,0
+294,New,Product,The experience with this company was excellent because the staff was very professional.,positive,5,0
+295,New,Sales,The experience with this company was excellent because the staff was very professional.,positive,4,0
+296,New,Product,The experience was neither good nor bad because there were no major issues.,neutral,4,0
+297,New,Delivery,The experience was neither good nor bad because the service was average.,neutral,3,0
+298,Returning,Support,I would not recommend this company because the delivery was delayed.,negative,2,1
+299,Returning,Support,"Overall, the company met my expectations, but the process was standard.",neutral,4,0
+300,New,Delivery,I had a bad experience since the delivery was delayed.,negative,2,1
+301,Returning,Delivery,The service did not meet my expectations and the service had several issues.,negative,2,1
+302,Returning,Product,"Overall, the company met my expectations, but the process was standard.",neutral,3,0
+303,Returning,Sales,The service did not meet my expectations and customer support was not helpful.,negative,1,1
+304,New,Support,The company did a great job and the product quality was excellent.,positive,5,0
+305,New,Sales,I had a bad experience since the delivery was delayed.,negative,2,1
+306,New,Support,"The service was okay, and there were no major issues.",neutral,3,0
+307,New,Support,The company did a great job and the product quality was excellent.,positive,5,0
+308,Returning,Support,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+309,New,Sales,I had a bad experience since customer support was not helpful.,negative,2,1
+310,Returning,Support,"The service was okay, and the service was average.",neutral,3,0
+311,New,Delivery,I am disappointed with the company because the service had several issues.,negative,2,1
+312,Returning,Delivery,I am disappointed with the company because customer support was not helpful.,negative,1,1
+313,Returning,Support,The experience was neither good nor bad because there were no major issues.,neutral,4,0
+314,Returning,Support,I had a bad experience since the product arrived damaged.,negative,2,1
+315,New,Product,I had a great experience and the company the product quality was excellent.,positive,4,0
+316,New,Support,I had a bad experience since the response time was very slow.,negative,2,1
+317,New,Delivery,I would not recommend this company because customer support was not helpful.,negative,1,1
+318,Returning,Sales,The company did a great job and the product quality was excellent.,positive,5,0
+319,New,Product,I had a great experience and the company the response time was fast.,positive,4,0
+320,New,Delivery,The company did a great job and customer support was very helpful.,positive,5,0
+321,Returning,Support,The experience with this company was excellent because the response time was fast.,positive,4,0
+322,New,Support,"Overall, the company met my expectations, but the experience was acceptable.",neutral,4,0
+323,New,Sales,My experience with the company was acceptable and the experience was acceptable.,neutral,4,0
+324,New,Delivery,The experience with this company was excellent because customer support was very helpful.,positive,4,0
+325,Returning,Sales,I would not recommend this company because the response time was very slow.,negative,1,1
+326,New,Product,I would not recommend this company because the response time was very slow.,negative,2,1
+327,New,Product,My experience with the company was acceptable and the experience was acceptable.,neutral,4,0
+328,New,Product,I am very satisfied with the service provided by the company. the response time was fast.,positive,4,0
+329,New,Product,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,4,0
+330,Returning,Delivery,The company did a great job and the response time was fast.,positive,4,0
+331,Returning,Sales,I would not recommend this company because the service had several issues.,negative,2,1
+332,New,Product,"The service was okay, and the process was standard.",neutral,3,0
+333,Returning,Product,"The service was okay, and the service was average.",neutral,3,0
+334,New,Product,The experience was neither good nor bad because the experience was acceptable.,neutral,3,0
+335,New,Product,I had a great experience and the company the response time was fast.,positive,4,0
+336,New,Sales,My experience with the company was acceptable and there were no major issues.,neutral,3,0
+337,New,Product,The experience was neither good nor bad because the service was average.,neutral,3,0
+338,Returning,Support,"The service was okay, and the service was average.",neutral,3,0
+339,New,Delivery,I had a bad experience since the delivery was delayed.,negative,2,1
+340,Returning,Sales,The service did not meet my expectations and the service had several issues.,negative,2,1
+341,New,Delivery,"The service was okay, and the experience was acceptable.",neutral,4,0
+342,Returning,Product,I would not recommend this company because the delivery was delayed.,negative,2,1
+343,New,Support,The company did a great job and the response time was fast.,positive,5,0
+344,Returning,Product,The experience with this company was excellent because the delivery arrived on time.,positive,4,0
+345,Returning,Support,"The service was okay, and the experience was acceptable.",neutral,3,0
+346,New,Support,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,5,0
+347,New,Support,The company did a great job and customer support was very helpful.,positive,4,0
+348,Returning,Delivery,The service did not meet my expectations and the service had several issues.,negative,1,1
+349,New,Product,I am disappointed with the company because the product arrived damaged.,negative,1,1
+350,Returning,Delivery,The service did not meet my expectations and the service had several issues.,negative,1,1
+351,Returning,Product,I had a great experience and the company the product quality was excellent.,positive,5,0
+352,Returning,Delivery,The experience was neither good nor bad because the process was standard.,neutral,3,0
+353,Returning,Product,"The service was okay, and there were no major issues.",neutral,3,0
+354,Returning,Support,The experience with this company was excellent because the product quality was excellent.,positive,4,0
+355,Returning,Product,"Overall, the company met my expectations, but the process was standard.",neutral,4,0
+356,Returning,Support,I had a great experience and the company the response time was fast.,positive,4,0
+357,New,Sales,I am disappointed with the company because the delivery was delayed.,negative,1,1
+358,New,Support,I would not recommend this company because the product arrived damaged.,negative,1,1
+359,Returning,Product,The company did a great job and the product quality was excellent.,positive,4,0
+360,Returning,Delivery,The company did a great job and the staff was very professional.,positive,4,0
+361,New,Support,The company did a great job and the response time was fast.,positive,4,0
+362,Returning,Sales,I had a great experience and the company the product quality was excellent.,positive,5,0
+363,New,Delivery,The company did a great job and the delivery arrived on time.,positive,4,0
+364,Returning,Product,My experience with the company was acceptable and the service was average.,neutral,3,0
+365,New,Sales,The company did a great job and the staff was very professional.,positive,4,0
+366,New,Support,The experience was neither good nor bad because the process was standard.,neutral,3,0
+367,New,Delivery,The company did a great job and the product quality was excellent.,positive,4,0
+368,New,Support,I am disappointed with the company because the product arrived damaged.,negative,2,1
+369,New,Support,The experience was neither good nor bad because the service was average.,neutral,4,0
+370,New,Sales,The experience was neither good nor bad because the process was standard.,neutral,4,0
+371,Returning,Support,"Overall, the company met my expectations, but the service was average.",neutral,3,0
+372,Returning,Sales,I had a bad experience since the delivery was delayed.,negative,2,1
+373,Returning,Product,The experience was neither good nor bad because the experience was acceptable.,neutral,3,0
+374,New,Sales,The experience was neither good nor bad because the service was average.,neutral,4,0
+375,Returning,Delivery,The experience with this company was excellent because the delivery arrived on time.,positive,4,0
+376,Returning,Delivery,I am very satisfied with the service provided by the company. the staff was very professional.,positive,5,0
+377,New,Product,I am disappointed with the company because the product arrived damaged.,negative,1,1
+378,New,Delivery,The experience was neither good nor bad because the service was average.,neutral,3,0
+379,Returning,Product,"Overall, the company met my expectations, but the experience was acceptable.",neutral,3,0
+380,New,Product,I am very satisfied with the service provided by the company. customer support was very helpful.,positive,4,0
+381,Returning,Support,I had a great experience and the company the product quality was excellent.,positive,5,0
+382,Returning,Product,The company did a great job and the product quality was excellent.,positive,5,0
+383,Returning,Support,I had a bad experience since customer support was not helpful.,negative,1,1
+384,Returning,Delivery,"The service was okay, and the process was standard.",neutral,3,0
+385,Returning,Product,I would not recommend this company because customer support was not helpful.,negative,2,1
+386,New,Product,The service did not meet my expectations and customer support was not helpful.,negative,2,1
+387,Returning,Support,The company did a great job and the product quality was excellent.,positive,5,0
+388,New,Support,I had a great experience and the company the delivery arrived on time.,positive,5,0
+389,New,Product,"The service was okay, and the service was average.",neutral,4,0
+390,New,Delivery,I am disappointed with the company because the service had several issues.,negative,2,1
+391,New,Product,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+392,Returning,Sales,I would not recommend this company because the delivery was delayed.,negative,2,1
+393,New,Support,I had a bad experience since the delivery was delayed.,negative,1,1
+394,Returning,Delivery,"Overall, the company met my expectations, but there were no major issues.",neutral,3,0
+395,New,Delivery,I would not recommend this company because the response time was very slow.,negative,1,1
+396,Returning,Product,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+397,Returning,Sales,The service did not meet my expectations and customer support was not helpful.,negative,1,1
+398,Returning,Delivery,I am very satisfied with the service provided by the company. the staff was very professional.,positive,4,0
+399,Returning,Product,The experience with this company was excellent because customer support was very helpful.,positive,5,0
+400,Returning,Sales,The company did a great job and the product quality was excellent.,positive,4,0
+401,New,Support,I am disappointed with the company because the response time was very slow.,negative,2,1
+402,New,Delivery,The service did not meet my expectations and the delivery was delayed.,negative,1,1
+403,New,Support,The experience was neither good nor bad because there were no major issues.,neutral,4,0
+404,New,Product,The experience was neither good nor bad because the experience was acceptable.,neutral,3,0
+405,New,Delivery,The experience was neither good nor bad because the service was average.,neutral,3,0
+406,New,Delivery,I am disappointed with the company because the delivery was delayed.,negative,1,1
+407,Returning,Delivery,The company did a great job and the staff was very professional.,positive,5,0
+408,Returning,Product,The experience was neither good nor bad because the service was average.,neutral,4,0
+409,Returning,Sales,"Overall, the company met my expectations, but the service was average.",neutral,3,0
+410,New,Product,I am very satisfied with the service provided by the company. the response time was fast.,positive,5,0
+411,New,Product,"The service was okay, and the experience was acceptable.",neutral,4,0
+412,Returning,Support,"The service was okay, and there were no major issues.",neutral,4,0
+413,Returning,Sales,The company did a great job and customer support was very helpful.,positive,4,0
+414,Returning,Product,"The service was okay, and the experience was acceptable.",neutral,4,0
+415,New,Sales,The experience was neither good nor bad because the experience was acceptable.,neutral,3,0
+416,Returning,Support,The service did not meet my expectations and customer support was not helpful.,negative,1,1
+417,New,Sales,"The service was okay, and the experience was acceptable.",neutral,4,0
+418,Returning,Support,I had a great experience and the company customer support was very helpful.,positive,4,0
+419,New,Product,I am disappointed with the company because the product arrived damaged.,negative,2,1
+420,New,Support,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,4,0
+421,New,Support,I had a bad experience since the delivery was delayed.,negative,2,1
+422,Returning,Support,The service did not meet my expectations and the response time was very slow.,negative,2,1
+423,New,Support,I had a great experience and the company the product quality was excellent.,positive,5,0
+424,New,Support,I would not recommend this company because the response time was very slow.,negative,2,1
+425,Returning,Support,I had a great experience and the company the response time was fast.,positive,5,0
+426,Returning,Sales,"Overall, the company met my expectations, but the experience was acceptable.",neutral,4,0
+427,Returning,Product,My experience with the company was acceptable and the experience was acceptable.,neutral,4,0
+428,New,Product,I had a bad experience since the delivery was delayed.,negative,1,1
+429,New,Product,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+430,Returning,Delivery,I would not recommend this company because customer support was not helpful.,negative,2,1
+431,New,Sales,"The service was okay, and the experience was acceptable.",neutral,4,0
+432,New,Product,The company did a great job and the staff was very professional.,positive,4,0
+433,Returning,Support,The experience was neither good nor bad because there were no major issues.,neutral,3,0
+434,Returning,Sales,I had a bad experience since the response time was very slow.,negative,2,1
+435,Returning,Support,The experience with this company was excellent because the staff was very professional.,positive,5,0
+436,New,Product,My experience with the company was acceptable and the service was average.,neutral,3,0
+437,New,Sales,The experience with this company was excellent because customer support was very helpful.,positive,5,0
+438,Returning,Sales,My experience with the company was acceptable and the experience was acceptable.,neutral,3,0
+439,Returning,Delivery,I am very satisfied with the service provided by the company. the staff was very professional.,positive,4,0
+440,New,Sales,The service did not meet my expectations and the service had several issues.,negative,1,1
+441,Returning,Support,My experience with the company was acceptable and there were no major issues.,neutral,4,0
+442,New,Sales,"The service was okay, and the experience was acceptable.",neutral,4,0
+443,Returning,Product,The service did not meet my expectations and the response time was very slow.,negative,2,1
+444,New,Support,The experience with this company was excellent because the response time was fast.,positive,5,0
+445,New,Support,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+446,Returning,Product,I had a bad experience since the response time was very slow.,negative,1,1
+447,New,Delivery,The company did a great job and customer support was very helpful.,positive,4,0
+448,Returning,Support,The service did not meet my expectations and the service had several issues.,negative,2,1
+449,New,Delivery,I am disappointed with the company because the response time was very slow.,negative,1,1
+450,Returning,Product,I am very satisfied with the service provided by the company. the delivery arrived on time.,positive,5,0
+451,Returning,Sales,I am disappointed with the company because the delivery was delayed.,negative,1,1
+452,Returning,Sales,The experience with this company was excellent because the response time was fast.,positive,5,0
+453,New,Sales,The company did a great job and the response time was fast.,positive,4,0
+454,Returning,Support,I am disappointed with the company because the service had several issues.,negative,1,1
+455,Returning,Delivery,The experience with this company was excellent because the staff was very professional.,positive,4,0
+456,New,Delivery,"Overall, the company met my expectations, but there were no major issues.",neutral,4,0
+457,Returning,Delivery,I am disappointed with the company because the response time was very slow.,negative,2,1
+458,Returning,Delivery,"Overall, the company met my expectations, but the service was average.",neutral,4,0
+459,Returning,Sales,The experience with this company was excellent because the product quality was excellent.,positive,4,0
+460,New,Sales,I am disappointed with the company because the product arrived damaged.,negative,1,1
+461,New,Support,The company did a great job and the product quality was excellent.,positive,5,0
+462,New,Delivery,I am disappointed with the company because the delivery was delayed.,negative,2,1
+463,Returning,Sales,I had a great experience and the company the product quality was excellent.,positive,4,0
+464,New,Product,My experience with the company was acceptable and there were no major issues.,neutral,3,0
+465,Returning,Sales,The company did a great job and the product quality was excellent.,positive,5,0
+466,Returning,Delivery,My experience with the company was acceptable and the process was standard.,neutral,3,0
+467,Returning,Support,The service did not meet my expectations and the service had several issues.,negative,2,1
+468,Returning,Sales,The service did not meet my expectations and the product arrived damaged.,negative,1,1
+469,New,Product,I had a great experience and the company the staff was very professional.,positive,5,0
+470,New,Product,I had a bad experience since the response time was very slow.,negative,1,1
+471,New,Sales,My experience with the company was acceptable and there were no major issues.,neutral,4,0
+472,New,Sales,I would not recommend this company because customer support was not helpful.,negative,2,1
+473,Returning,Support,The experience was neither good nor bad because the service was average.,neutral,3,0
+474,Returning,Delivery,I had a great experience and the company the product quality was excellent.,positive,5,0
+475,New,Sales,"The service was okay, and the service was average.",neutral,3,0
+476,Returning,Product,The experience with this company was excellent because the delivery arrived on time.,positive,5,0
+477,Returning,Product,I had a great experience and the company the response time was fast.,positive,5,0
+478,Returning,Sales,I am very satisfied with the service provided by the company. the staff was very professional.,positive,4,0
+479,New,Delivery,I had a great experience and the company the response time was fast.,positive,4,0
+480,New,Sales,I am very satisfied with the service provided by the company. the product quality was excellent.,positive,5,0
+481,New,Product,I would not recommend this company because the delivery was delayed.,negative,1,1
+482,New,Support,The experience with this company was excellent because the staff was very professional.,positive,4,0
+483,Returning,Sales,The company did a great job and the product quality was excellent.,positive,4,0
+484,New,Sales,I am very satisfied with the service provided by the company. the response time was fast.,positive,5,0
+485,Returning,Sales,I had a bad experience since the response time was very slow.,negative,1,1
+486,New,Product,The company did a great job and the delivery arrived on time.,positive,5,0
+487,New,Delivery,"The service was okay, and the process was standard.",neutral,3,0
+488,Returning,Product,The experience with this company was excellent because the staff was very professional.,positive,4,0
+489,Returning,Product,The experience was neither good nor bad because the service was average.,neutral,3,0
+490,New,Product,The experience with this company was excellent because customer support was very helpful.,positive,4,0
+491,Returning,Delivery,I had a bad experience since the service had several issues.,negative,2,1
+492,New,Sales,The experience with this company was excellent because the staff was very professional.,positive,5,0
+493,Returning,Support,I had a bad experience since the response time was very slow.,negative,2,1
+494,Returning,Sales,I am disappointed with the company because the product arrived damaged.,negative,1,1
+495,Returning,Support,The service did not meet my expectations and the delivery was delayed.,negative,2,1
+496,Returning,Support,I had a great experience and the company the product quality was excellent.,positive,4,0
+497,New,Product,"The service was okay, and the experience was acceptable.",neutral,4,0
+498,New,Product,I am very satisfied with the service provided by the company. the response time was fast.,positive,4,0
+499,New,Delivery,The experience with this company was excellent because the response time was fast.,positive,5,0
+500,New,Delivery,The experience with this company was excellent because customer support was very helpful.,positive,4,0
