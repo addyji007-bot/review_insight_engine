@@ -1,10 +1,7 @@
 [theme]
-primaryColor = "#2549eb"
+base = "light"
+primaryColor = "#430b9c"
 backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f8fafc"
-textColor = "#0f172a"
-
-[server]
-headless = true
-enableCORS = false
-
+secondaryBackgroundColor = "#f7f4ff"
+textColor = "#180c2f"
+font = "sans serif"

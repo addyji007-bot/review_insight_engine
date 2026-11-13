@@ -68,7 +68,7 @@ models/
 *.bak
 business_insight_slide.html
 aspect_results.csv
-signaldesk_enriched_feedback.csv
+aspectlens_enriched_reviews.csv
 
 # ---------------------------------------------------------------
 # Editors and operating systems

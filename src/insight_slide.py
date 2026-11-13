@@ -114,32 +114,32 @@ def render_slide_html(insight: dict, title: str = "Customer Feedback Insight") -
 <title>{e(title)}</title>
 <style>
   *{{box-sizing:border-box;margin:0;padding:0}}
-  html,body{{background:#e2e8f0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#0f172a}}
+  html,body{{background:#ece6fa;font-family:"Manrope","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1c1033}}
   body{{display:flex;align-items:center;justify-content:center;min-height:100vh}}
   .slide{{container-type:inline-size;width:min(100vw,177.78vh);aspect-ratio:16/9;background:#fff;display:flex;flex-direction:column;overflow:hidden}}
-  .head{{background:#0b1324;color:#fff;padding:2.2cqw 3.2cqw 2cqw}}
-  .eyebrow{{font-size:1cqw;letter-spacing:.16em;text-transform:uppercase;color:#93c5fd;font-weight:700}}
+  .head{{background:linear-gradient(120deg,#2e1065,#5b21b6 60%,#a21caf);color:#fff;padding:2.2cqw 3.2cqw 2cqw}}
+  .eyebrow{{font-size:1cqw;letter-spacing:.16em;text-transform:uppercase;color:#f5d0fe;font-weight:700}}
   h1{{font-size:2.9cqw;line-height:1.15;margin-top:.7cqw;font-weight:700;letter-spacing:-.01em}}
   .main{{flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:2.2cqw;padding:2.2cqw 3.2cqw 1.2cqw}}
-  .card{{border-radius:1.1cqw;padding:1.6cqw 1.8cqw;border:1px solid #e2e8f0}}
-  .card.bad{{background:#fef2f2;border-color:#fecaca}}
-  .card.good{{background:#ecfdf5;border-color:#bbf7d0;margin-top:1.4cqw}}
+  .card{{border-radius:1.1cqw;padding:1.6cqw 1.8cqw;border:1px solid #e7e1f5}}
+  .card.bad{{background:#fff1f2;border-color:#fecdd3}}
+  .card.good{{background:#ecfdf5;border-color:#a7f3d0;margin-top:1.4cqw}}
   .label{{font-size:.95cqw;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#64748b}}
   .big{{font-size:4.6cqw;font-weight:800;line-height:1;margin:.5cqw 0 .2cqw}}
-  .bad .big{{color:#b91c1c}} .good .big{{color:#0f766e}}
+  .bad .big{{color:#be123c}} .good .big{{color:#047857}}
   .what{{font-size:1.5cqw;font-weight:700}}
   .sub{{font-size:1.15cqw;color:#475569;margin-top:.2cqw}}
   .quote{{font-size:1.2cqw;font-style:italic;color:#334155;margin-top:.9cqw;border-left:.3cqw solid #cbd5e1;padding-left:.9cqw}}
   .panel-title{{font-size:1.2cqw;font-weight:700;margin-bottom:1cqw}}
   .bar-row{{display:grid;grid-template-columns:11cqw 1fr 8cqw;align-items:center;gap:.8cqw;margin-bottom:.9cqw}}
   .bar-name{{font-size:1.2cqw;font-weight:600}}
-  .bar-track{{background:#f1f5f9;border-radius:.6cqw;height:1.5cqw;overflow:hidden}}
-  .bar-fill{{background:#dc2626;height:100%;border-radius:.6cqw}}
+  .bar-track{{background:#f3eeff;border-radius:.6cqw;height:1.5cqw;overflow:hidden}}
+  .bar-fill{{background:#e11d48;height:100%;border-radius:.6cqw}}
   .bar-val{{font-size:1.2cqw;font-weight:700;text-align:right}} .bar-val span{{font-weight:400;color:#64748b;font-size:.95cqw}}
-  .action{{margin-top:1.4cqw;background:#0b1324;color:#fff;border-radius:1.1cqw;padding:1.4cqw 1.7cqw}}
-  .action .label{{color:#93c5fd}} .action p{{font-size:1.35cqw;line-height:1.35;margin-top:.5cqw}}
+  .action{{margin-top:1.4cqw;background:#1c1033;color:#fff;border-radius:1.1cqw;padding:1.4cqw 1.7cqw}}
+  .action .label{{color:#fde68a}} .action p{{font-size:1.35cqw;line-height:1.35;margin-top:.5cqw}}
   .muted{{color:#64748b;font-size:1.2cqw}}
-  .foot{{display:flex;justify-content:space-between;gap:2cqw;padding:.9cqw 3.2cqw 1.3cqw;font-size:.95cqw;color:#64748b;border-top:1px solid #e2e8f0}}
+  .foot{{display:flex;justify-content:space-between;gap:2cqw;padding:.9cqw 3.2cqw 1.3cqw;font-size:.95cqw;color:#64748b;border-top:1px solid #e7e1f5}}
   @media print{{@page{{size:13.333in 7.5in;margin:0}} html,body{{background:#fff}} body{{display:block;min-height:0}} .slide{{width:100vw;height:100vh}}}}
 </style></head><body>
 <div class="slide">
