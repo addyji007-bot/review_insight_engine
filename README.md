@@ -1,4 +1,4 @@
-# Review Insight Engine (SignalDesk)
+# AspectLens (Review Insight Engine)
 
 **Turn thousands of customer reviews into a clear answer to: *what do customers like, what do they complain about, and what should we fix first?***
 
@@ -32,7 +32,6 @@ Review Insight Engine is an open-source Natural Language Processing (NLP) applic
 - [Troubleshooting](#troubleshooting)
 - [Limitations](#limitations)
 - [Roadmap](#roadmap)
-- [Acknowledgements and credits](#acknowledgements-and-credits)
 - [Team](#team)
 - [License](#license)
 
@@ -58,7 +57,7 @@ Aspect-level analysis tells a team **what to protect and what to fix**. This pro
 | Feature | What you get |
 |---|---|
 | **Flexible upload** | CSV, TSV, JSON or TXT. The review column is detected automatically (or chosen by hand). |
-| **Data-quality controls** | Dataset validation report, duplicate removal, row cap, and a visible count of everything excluded. Nothing is silently dropped. |
+| **Data-quality controls** | Data check report, duplicate removal, row cap, and a visible count of everything excluded. Nothing is silently dropped. |
 | **Overall sentiment** | DistilBERT (fine-tuned on SST-2) with a confidence score for every review. |
 | **Aspect-based sentiment** | 12 business aspects detected, each scored from the clause that mentions it, with the evidence phrase shown. |
 | **"Why this prediction?"** | Word-level explanation: words are shaded **green** (push toward positive) or **red** (push toward negative). |
@@ -84,17 +83,17 @@ flowchart TD
     C1 --> D[("Results table")]
     C2 --> D
     C3 --> D
-    D --> E["Overview dashboard"]
+    D --> E["Dashboard"]
     D --> F["Feedback table and CSV export"]
-    D --> G["Aspect Insights"]
-    D --> H["Topic Intelligence<br/>BERTopic"]
+    D --> G["Aspect Lens"]
+    D --> H["Theme Finder<br/>BERTopic"]
     G --> G1["Detect aspects<br/>keyword lexicon"]
     G1 --> G2["Split into clauses"]
     G2 --> G3["Score each clause<br/>DistilBERT"]
     G3 --> I["Charts, evidence table,<br/>one-slide business insight"]
 ```
 
-The app has six tabs: **Overview**, **Feedback Analysis**, **Aspect Insights**, **Quick Feedback Analysis**, **Topic Intelligence** and **Model & Methodology**.
+The app has six tabs: **Dashboard**, **Review Explorer**, **Aspect Lens**, **Try a Sentence**, **Theme Finder** and **How It Works**.
 
 ---
 
@@ -161,8 +160,8 @@ Instead of training a new model, the project reuses the existing sentiment model
 
 ```bash
 # 1. Get the code
-git clone https://github.com/<your-username>/<repository-name>.git
-cd <repository-name>
+git clone https://github.com/addyji007-bot/review_insight_engine.git
+cd review_insight_engine
 
 # 2. Create and activate a virtual environment
 python -m venv venv
@@ -175,7 +174,7 @@ pip install -r requirements.txt
 # 4. Install the spaCy English model
 python -m spacy download en_core_web_sm
 
-# 5. (Optional) Enable Topic Intelligence
+# 5. (Optional) Enable Theme Finder
 pip install -r requirements-topics.txt
 ```
 
@@ -193,20 +192,20 @@ Open **http://localhost:8501**.
 
 ## Using the app
 
-1. **Overview →** upload a file of reviews, or click **Load sample dataset**.
-2. Check the **Dataset validation** box (rows found, empty rows removed, detected text column).
+1. **Dashboard →** upload a file of reviews, or click **Use the sample reviews**.
+2. Check the **Data check** box (rows found, empty rows removed, detected text column).
    If the app asks for a column, choose the **full review text**, not the short title.
-3. Keep **Remove duplicate reviews** on and set **Maximum reviews to analyze**, then click **Analyze Feedback**.
+3. Keep **Remove duplicate reviews** on and set **Maximum reviews to analyze**, then click **Run analysis**.
 4. Explore the tabs:
 
    | Tab | Use it to |
    |---|---|
-   | **Overview** | See the dashboard: % negative, % positive, confidence, processing speed |
-   | **Feedback Analysis** | Search and filter every review with sentiment, entities, aspects and keywords; download the CSV |
-   | **Aspect Insights** | Click **Run aspect analysis** for charts, evidence table, the one-slide insight and evaluation |
-   | **Quick Feedback Analysis** | Type any sentence to see predicted sentiment, green/red word influence, clause breakdown and tags |
-   | **Topic Intelligence** | Click **Discover Topic Clusters** to find recurring themes |
-   | **Model & Methodology** | Read how each part works and its limitations |
+   | **Dashboard** | See the dashboard: % negative, % positive, confidence, processing speed |
+   | **Review Explorer** | Search and filter every review with sentiment, entities, aspects and keywords; download the CSV |
+   | **Aspect Lens** | Click **Find aspects** for charts, evidence table, the one-slide insight and evaluation |
+   | **Try a Sentence** | Type any sentence to see predicted sentiment, green/red word influence, clause breakdown and tags |
+   | **Theme Finder** | Click **Find themes** to find recurring themes |
+   | **How It Works** | Read how each part works and its limitations |
 
 ### Input format
 
@@ -221,7 +220,7 @@ Any file with a column of review text. These column names are detected automatic
 | 2,000 | Practical limit on a CPU |
 | More than 2,000 | Run ahead of time rather than live |
 
-The Overview tab reports the real processing speed on your machine.
+The Dashboard tab reports the real processing speed on your machine.
 
 ---
 
@@ -247,7 +246,7 @@ See the header of the script for its options.
 
 ## Evaluating accuracy
 
-Model quality should be **measured**, not assumed. The Aspect Insights tab includes a validation workflow:
+Model quality should be **measured**, not assumed. The Aspect Lens tab includes a validation workflow:
 
 1. Open **Validate against your own labels** and download the 40-row template.
 2. Fill the `true_sentiment` column by hand (`positive`, `negative` or `neutral`) based on the clause and aspect shown. Hide the model's prediction column while labelling to avoid bias.
@@ -319,9 +318,9 @@ The suite covers preprocessing, topic handling, integration, aspect detection, a
 |---|---|
 | `has no attribute …` right after editing files | Streamlit kept an old cached object. Stop the app, delete `__pycache__` folders, restart, and hard-refresh the browser (Ctrl + Shift + R). |
 | `[Errno 22] Invalid argument` | The terminal the app was started from was closed (for example by reloading the editor window). Stop old Python processes and start the app again in a **new** terminal. |
-| Topic Intelligence says BERTopic is not installed | Run `pip install -r requirements-topics.txt`. |
+| Theme Finder says BERTopic is not installed | Run `pip install -r requirements-topics.txt`. |
 | "Topic discovery needs at least 10 reviews" | The data has too few **unique** reviews. Use a larger, more varied file. |
-| Entity column is empty for most reviews | Expected: named entities are people, places, organizations and dates. Use the **Business aspects** column for what reviews are about. |
+| Entity column is empty for most reviews | Expected: named entities are people, places, organizations and dates. Use the **Topics mentioned** column for what reviews are about. |
 | First analysis is very slow | Models are being downloaded once. Later runs are faster. For large files, lower **Maximum reviews to analyze**. |
 | spaCy model not found | `python -m spacy download en_core_web_sm`. |
 | Red error box in the app | Open **Technical details** in the box; it shows the full traceback. |
@@ -351,12 +350,6 @@ The suite covers preprocessing, topic handling, integration, aspect detection, a
 
 ---
 
-## Acknowledgements and credits
-
-- **Base project:** [NLP Customer Feedback Insights](https://github.com/varshabalaji18/nlp-customer-feedback-insights) by varshabalaji18 provided the foundation: file upload and cleaning, DistilBERT sentiment, spaCy entities and keywords, a first dashboard, batch scripts and tests.
-- **Idea reference only:** [AspectSense](https://github.com/sowmya0777/AspectSense) by sowmya0777 inspired sentiment-toward-an-aspect. No code was copied.
-- **Added in this project:** word-level explanations, business-aspect detection, clause-level aspect-based sentiment, the Aspect Insights tab, the one-slide business insight, a topic engine for small datasets, the evaluation workflow, speed and data-quality controls, and additional tests.
-
 **Research and models**
 
 - Sanh et al., *DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter* ([arXiv:1910.01108](https://arxiv.org/abs/1910.01108)).
@@ -367,7 +360,7 @@ The suite covers preprocessing, topic handling, integration, aspect detection, a
 
 ---
 
-## Author
+## Author 
 
  Aditya Gupta
 
