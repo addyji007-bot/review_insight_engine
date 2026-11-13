@@ -367,9 +367,9 @@ The suite covers preprocessing, topic handling, integration, aspect detection, a
 
 ---
 
-## Team
+## Author
 
-**Group No. 07** — Aditya Gupta, Harsh, Kedar.
+ Aditya Gupta
 
 ---
 
