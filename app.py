@@ -21,6 +21,7 @@ import streamlit as st
 from src.aspects import aspect_names, find_aspect_mentions
 from src.pipeline import FeedbackInsightsPipeline
 from src.preprocessing import load_feedback, normalize_feedback_frame
+from src.insight_slide import build_insight, render_slide_html
 from src.aspect_sentiment import analyze_aspects, evaluate_labels, split_clauses, summarize_aspects, validation_template
 from src.topic_engine import TopicDiscoverer, dataset_fingerprint
 
@@ -129,7 +130,7 @@ inject_style()
 
 # Bump this string whenever you replace source files, so Streamlit never reuses
 # an object that was built from older code.
-CACHE_VERSION = "2026-11-12-r5"
+CACHE_VERSION = "2026-11-12-r6"
 
 
 @st.cache_resource(show_spinner="Loading NLP models…")
@@ -895,6 +896,25 @@ def render_aspect_insights() -> None:
         f'{best["positive_share"]:.0%} of its {int(best["mentions"])} mentions are positive.</div>',
         unsafe_allow_html=True,
     )
+
+    st.markdown('<div class="section-label">One-slide business insight</div>', unsafe_allow_html=True)
+    insight = build_insight(summary, aspect_df, len(results))
+    if insight:
+        slide_html = render_slide_html(insight)
+        try:
+            import streamlit.components.v1 as components
+
+            components.html(slide_html, height=640, scrolling=False)
+        except Exception:
+            st.caption("Preview unavailable here; download the slide below.")
+        st.download_button(
+            "Download the insight slide (HTML)",
+            slide_html,
+            "business_insight_slide.html",
+            "text/html",
+            key="insight_slide_download",
+        )
+        st.caption("Open the file in a browser, then screenshot it or use Print > Save as PDF to place it in your presentation.")
 
     st.markdown('<div class="section-label">Sentiment by aspect</div>', unsafe_allow_html=True)
     long = summary.melt(id_vars=["aspect"], value_vars=["positive", "negative", "neutral"], var_name="sentiment", value_name="count")

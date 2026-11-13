@@ -328,7 +328,7 @@ def test_all_plotly_chart_keys_unique():
         content = f.read()
     keys = re.findall(r'key="chart_([^"]+)"', content)
     assert len(keys) == len(set(keys)), f"Duplicate chart keys found: {keys}"
-    assert len(keys) == 5, f"Expected 5 chart keys, found {len(keys)}: {keys}"
+    assert len(keys) == 9, f"Expected 9 chart keys, found {len(keys)}: {keys}"
 
 
 # --- Test L: Amazon "Review Text" column (with space) auto-detected ---

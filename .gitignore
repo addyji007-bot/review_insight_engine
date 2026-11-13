@@ -1,9 +1,81 @@
+# ---------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+
+# Test, coverage and tooling caches
 .pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+
+# ---------------------------------------------------------------
+# Virtual environments
+# ---------------------------------------------------------------
+venv/
 .venv/
-*.pyc
-.streamlit/
-models/
+env/
+ENV/
+
+# ---------------------------------------------------------------
+# Secrets and local configuration (never commit these)
+# ---------------------------------------------------------------
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# ---------------------------------------------------------------
+# Jupyter
+# ---------------------------------------------------------------
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------------
+# Data: keep small samples and validation labels, ignore large or private data
+# ---------------------------------------------------------------
+/*.csv
+/*.tsv
 data/raw/
 data/processed/
+!data/sample/
+!data/validation/
 
+# Downloaded or trained models and caches
+models/
+.cache/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+# ---------------------------------------------------------------
+# Generated outputs
+# ---------------------------------------------------------------
+*.log
+*.tmp
+*.bak
+business_insight_slide.html
+aspect_results.csv
+signaldesk_enriched_feedback.csv
+
+# ---------------------------------------------------------------
+# Editors and operating systems
+# ---------------------------------------------------------------
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
