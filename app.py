@@ -617,7 +617,7 @@ def render_overview() -> None:
             (k1, "Reviews analyzed", f"{len(results):,}", "ready to explore", "#6d28d9"),
             (k2, "Unhappy", f"{negative / len(results):.0%}", f"{negative:,} reviews", "#e11d48"),
             (k3, "Happy", f"{positive / len(results):.0%}", f"{positive:,} reviews", "#059669"),
-            (k4, "Model is sure", f"{high_conf / len(results):.0%}", "confidence 90% or more", "#f59e0b"),
+            (k4, "Model is sure", f"{high_conf / len(results):.0%}", "confidence 90% or more", "#6323d2"),
         ]:
             col.markdown(kpi_card(label, value, note, accent), unsafe_allow_html=True)
 
@@ -924,10 +924,10 @@ def render_aspect_insights() -> None:
     top = summary.iloc[0]
     k1, k2, k3, k4 = st.columns(4)
     for col, label, value, note, accent in [
-        (k1, "Reviews analyzed", f"{len(results):,}", "from the Dashboard run", "#6d28d9"),
-        (k2, "Name a topic", f"{with_aspect / len(results):.0%}", f"{with_aspect:,} reviews", "#c026d3"),
-        (k3, "Topic mentions", f"{len(aspect_df):,}", f"{len(summary)} different topics", "#f59e0b"),
-        (k4, "Talked about most", html.escape(str(top["aspect"]).title()), f"{int(top['mentions']):,} mentions", "#059669"),
+        (k1, "Reviews analyzed", f"{len(results):,}", "from the Dashboard run", "#3b088c"),
+        (k2, "Name a topic", f"{with_aspect / len(results):.0%}", f"{with_aspect:,} reviews", "#460694"),
+        (k3, "Topic mentions", f"{len(aspect_df):,}", f"{len(summary)} different topics", "#6709c6"),
+        (k4, "Talked about most", html.escape(str(top["aspect"]).title()), f"{int(top['mentions']):,} mentions", "#7D03E9"),
     ]:
         col.markdown(kpi_card(label, value, note, accent, small=(label == "Talked about most")), unsafe_allow_html=True)
 
