@@ -1,4 +1,4 @@
-"""Evaluate a labelled CSV containing text and label columns."""
+
 
 from __future__ import annotations
 

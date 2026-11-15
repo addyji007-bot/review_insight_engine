@@ -1,4 +1,4 @@
-"""Run the NLP enrichment pipeline on a dataset."""
+"""Run the NLP pipeline on a dataset."""
 
 from __future__ import annotations
 

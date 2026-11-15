@@ -1,3 +1,5 @@
+"For other developers to reproduce this project environment easily"
+
 $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path

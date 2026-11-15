@@ -1,4 +1,4 @@
-"""Build a clean, de-duplicated review sample for the demo.
+"""
 
 Usage (PowerShell, from the project folder):
     python scripts/prepare_sample.py path\to\reviews.csv --n 1000 --out data/sample/reviews_1000.csv
